@@ -1,0 +1,90 @@
+package companytask;
+
+import java.time.Duration;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+
+
+public class Test1 {
+	 public String url = "https://in.bookmyshow.com/explore/home";
+	 public static WebDriver driver;
+	public static void browserlaunch() {
+		
+    
+        driver = new ChromeDriver();
+     	driver.manage().window().maximize();
+  		driver.manage().deleteAllCookies();
+  		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		         
+                     
+    }        
+
+	
+	public void action() throws InterruptedException {
+		
+		WebDriverWait x = new WebDriverWait(driver,Duration.ofSeconds(10));
+				
+				Thread.sleep(10000); driver.navigate().to("https://yopmail.com/");
+		        WebElement searchbox2 = driver.findElement(By.xpath("//input[@class='ycptinput']"));
+		        searchbox2.sendKeys("seleniumauto@yopmail.com");
+		        
+		        
+		        WebElement clickonsearchbox = driver.findElement(By.xpath("//i[@class='material-icons-outlined f36']"));
+		        clickonsearchbox.click();
+		        
+		   
+		        driver.switchTo().frame("ifmail");
+	        	  
+		       
+		       WebElement getotp =  x.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[text()='724136']")));
+		       Actions act = new Actions(driver);
+		        act.moveToElement(getotp).doubleClick().sendKeys(Keys.chord(Keys.CONTROL,"c")).perform();
+		       // driver.navigate().back();
+				
+		    	driver.get(url);
+				Thread.sleep(10000);
+				WebElement city = x.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='BANG']")));
+				city.click();
+		        
+		        
+				WebElement signin = x.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Sign in']")));
+				signin.click();
+				
+				WebElement email = x.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Continue with Email']")));
+		        email.click();
+		        
+		        WebElement searchbox = driver.findElement(By.xpath("//input[@id='emailId']"));
+		        searchbox.sendKeys("seleniumauto@yopmail.com");
+		        
+		        WebElement continuebtn = driver.findElement(By.xpath("//button[text()='Continue']"));
+		        continuebtn.click();
+		        WebElement locOfOrder = driver.findElement(By.xpath("//div[@class='sc-fqkvVR sc-dxcDKg bhNvUi bdbgij']"));
+		       
+		        act.moveToElement(locOfOrder).doubleClick().build().perform();
+		        String pasteotp = x.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@type='tel'][1]")));
+		       // act.moveToElement(pasteotp).doubleClick(pasteotp).sendKeys(Keys.chord(Keys.CONTROL, "v")).perform();
+		        driver.findElement(By.xpath(pasteotp)).sendKeys(Keys.chord(Keys.CONTROL, "v"));
+		        
+		        
+		        
+		        
+	}
+	
+	public static void main(String[]args) throws InterruptedException {
+		Test1 t = new Test1();
+		browserlaunch();
+		t.action();
+		
+	}
+
+}

@@ -1,0 +1,30 @@
+package companytask;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Test1 {
+	
+	
+	
+	public static void main(String[]args) {
+		
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to("https://in.bookmyshow.com/explore/home/");
+		//driver.findElement(By.xpath("//input[@class='sc-ijtseF yJmud']")).sendKeys("fhid");
+	    WebElement city = driver.findElement(By.className("//img[@alt ='BANG'][1]"));
+	    city.click();
+	    
+
+		
+		
+	}
+
+}
